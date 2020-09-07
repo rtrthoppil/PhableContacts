@@ -41,20 +41,4 @@ open class BaseActivity : AppCompatActivity() {
         activityBaseBinding.viewModel = viewModel
         supportFragmentManager.beginTransaction().add(activityBaseBinding.layoutBaseActivityContent.id, fragment, tag ).commit()
     }
-
-    /**
-     * Method to add remaining fragment to the activity without using an activity layout
-     */
-    fun addFragmentToActivity(fragment : BaseFragment, tag : String, viewModel: BaseViewModel){
-        activityBaseBinding.viewModel = viewModel
-        supportFragmentManager.beginTransaction().add(activityBaseBinding.layoutBaseActivityContent.id, fragment, tag ).addToBackStack(tag).commit()
-    }
-
-    /**
-     * Method to replace remaining fragment to the activity without using an activity layout
-     */
-    fun replaceFragmentToActivity(fragment : BaseFragment, tag : String, viewModel: BaseViewModel){
-        activityBaseBinding.viewModel = viewModel
-        supportFragmentManager.beginTransaction().replace(activityBaseBinding.layoutBaseActivityContent.id, fragment, tag ).addToBackStack(tag).commit()
-    }
 }
