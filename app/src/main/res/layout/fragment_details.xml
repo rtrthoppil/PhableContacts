@@ -18,6 +18,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutName"
+            errorText="@{ viewModel.errorTextName }"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_50_dp"
@@ -40,6 +41,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutEmail"
+            errorText="@{ viewModel.errorTextEmail }"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_20_dp"

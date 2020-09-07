@@ -15,7 +15,7 @@ import com.rtr.phablecontacts.db.Contacts
 import com.rtr.phablecontacts.utils.CommonDialogUtils
 import com.rtr.phablecontacts.utils.DialogClickListener
 import com.rtr.phablecontacts.utils.OnClickContactItem
-import com.rtr.phablecontacts.utils.OnClickFabButton
+import com.rtr.phablecontacts.utils.OnClickListenerForContacts
 import com.rtr.phablecontacts.view.adapter.ContactsRecyclerViewAdapter
 import com.rtr.phablecontacts.viewmodel.HomeListingViewModel
 
@@ -31,7 +31,7 @@ class HomeListingFragment : BaseFragment(), OnClickContactItem {
 
     lateinit var viewModel: HomeListingViewModel
     lateinit var binding: FragmentHomeListingBinding
-    private lateinit var callbackOnClickFabButton: OnClickFabButton
+    private lateinit var callbackOnClickListenerForContacts: OnClickListenerForContacts
 
     companion object {
         fun newInstance(): HomeListingFragment {
@@ -69,14 +69,14 @@ class HomeListingFragment : BaseFragment(), OnClickContactItem {
      * Click listener for fab button
      */
     private val fabClickListener = View.OnClickListener {
-        callbackOnClickFabButton.onCLickFabButton()
+        callbackOnClickListenerForContacts.onCLickFabButton()
     }
 
     /**
      * Method to attach listener for fab button
      */
-    fun setOnClickFabButtonAction(callbackOnClickFabButton: OnClickFabButton) {
-        this.callbackOnClickFabButton = callbackOnClickFabButton
+    fun setOnClickFabButtonAction(callbackOnClickListenerForContacts: OnClickListenerForContacts) {
+        this.callbackOnClickListenerForContacts = callbackOnClickListenerForContacts
     }
 
     override fun onClickContactItem(view: View, item : Contacts) {
@@ -93,10 +93,10 @@ class HomeListingFragment : BaseFragment(), OnClickContactItem {
                 negativeButton = getString(R.string.update), dialogClickListener = object :
                     DialogClickListener {
                     override fun onClickPositiveButton() {
-
+                        viewModel.deleteContact(item)
                     }
                     override fun onClickNegativeButton() {
-
+                        callbackOnClickListenerForContacts.onClickUpdateItem(item)
                     }
                 })
         }

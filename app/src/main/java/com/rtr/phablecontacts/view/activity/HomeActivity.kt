@@ -7,7 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.rtr.phablecontacts.R
 import com.rtr.phablecontacts.base.BaseActivity
 import com.rtr.phablecontacts.databinding.ActivityHomeBinding
-import com.rtr.phablecontacts.utils.OnClickFabButton
+import com.rtr.phablecontacts.db.Contacts
+import com.rtr.phablecontacts.utils.OnClickListenerForContacts
 import com.rtr.phablecontacts.view.fragement.DetailsFragment
 import com.rtr.phablecontacts.view.fragement.HomeListingFragment
 import com.rtr.phablecontacts.viewmodel.HomeViewModel
@@ -20,7 +21,7 @@ import com.rtr.phablecontacts.viewmodel.HomeViewModel
 /**
  * Activity class for home screen
  */
-class HomeActivity : BaseActivity(), OnClickFabButton{
+class HomeActivity : BaseActivity(), OnClickListenerForContacts{
 
     private lateinit var viewModel: HomeViewModel
     private lateinit var binding: ActivityHomeBinding
@@ -50,8 +51,19 @@ class HomeActivity : BaseActivity(), OnClickFabButton{
     }
 
     override fun onCLickFabButton() {
+        launchDetailsPage()
+    }
+
+    override fun onClickUpdateItem(item: Contacts) {
+        launchDetailsPage(item)
+    }
+
+    /**
+     * Method to launch details page
+     */
+    private fun launchDetailsPage(data : Contacts? = null){
         supportFragmentManager.beginTransaction().add(binding.layoutHomeContent.id,
-            DetailsFragment.newInstance(), DetailsFragment::class.java.toString() )
+            DetailsFragment.newInstance(data), DetailsFragment::class.java.toString() )
             .addToBackStack(DetailsFragment::class.java.toString()).commit()
     }
 }

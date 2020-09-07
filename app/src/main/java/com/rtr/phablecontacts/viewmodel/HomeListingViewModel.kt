@@ -35,14 +35,14 @@ class HomeListingViewModel(var app: Application) : BaseViewModel(app) {
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
      */
-    private fun addContact(contact: Contacts) = viewModelScope.launch(Dispatchers.IO) {
+    fun addContact(contact: Contacts) = viewModelScope.launch(Dispatchers.IO) {
         contactsRepository.addContact(contact)
     }
 
     /**
      * Launching a new coroutine to delete the data in a non-blocking way
      */
-    private fun deleteContact(contact: Contacts) = viewModelScope.launch(Dispatchers.IO) {
+    fun deleteContact(contact: Contacts) = viewModelScope.launch(Dispatchers.IO) {
         contactsRepository.deleteContact(contact)
     }
 

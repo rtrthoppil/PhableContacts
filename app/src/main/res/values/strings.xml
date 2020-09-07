@@ -11,6 +11,10 @@
     <string name="email">Email ID</string>
     <string name="submit">Submit</string>
     <string name="update">Update</string>
+    <string name="error_name">Please enter valid name</string>
+    <string name="error_email">Please enter valid email</string>
     <string name="are_you_sure">Please click on update for updating and delete for removing the record</string>
     <string name="confirm_pop_up">Confirm your selection</string>
+    <string name="add_success">Contact added successfully</string>
+    <string name="update_success">Contact updated successfully</string>
 </resources>

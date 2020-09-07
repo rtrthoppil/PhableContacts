@@ -1,11 +1,7 @@
 package com.rtr.phablecontacts.db
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 /**
  * Created by RAHUL T R
@@ -24,6 +20,9 @@ interface ContactsDao {
     @Delete
     fun deleteContact(contact: Contacts)
 
+    @Update
+    fun updateContact(contact: Contacts)
+
     @Query("SELECT * FROM contacts")
     fun getAllContacts(): LiveData<List<Contacts>>
 
@@ -32,4 +31,5 @@ interface ContactsDao {
 
     @Query("DELETE FROM contacts WHERE contactId is :contactId")
     fun deleteContact(contactId: Int)
+
 }
