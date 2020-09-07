@@ -1,4 +1,4 @@
-package com.rtr.phablecontacts.view
+package com.rtr.phablecontacts.view.activity
 
 import android.content.Intent
 import android.os.Bundle

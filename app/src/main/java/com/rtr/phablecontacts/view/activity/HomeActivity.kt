@@ -1,4 +1,4 @@
-package com.rtr.phablecontacts.view
+package com.rtr.phablecontacts.view.activity
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,8 @@ import com.rtr.phablecontacts.R
 import com.rtr.phablecontacts.base.BaseActivity
 import com.rtr.phablecontacts.databinding.ActivityHomeBinding
 import com.rtr.phablecontacts.utils.OnClickFabButton
+import com.rtr.phablecontacts.view.fragement.DetailsFragment
+import com.rtr.phablecontacts.view.fragement.HomeListingFragment
 import com.rtr.phablecontacts.viewmodel.HomeViewModel
 
 /**

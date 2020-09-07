@@ -12,7 +12,7 @@
             android:name=".base.BaseActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.SplashActivity"
+            android:name=".view.activity.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.HomeActivity"
+            android:name=".view.activity.HomeActivity"
             android:screenOrientation="portrait" />
     </application>
 

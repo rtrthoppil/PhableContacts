@@ -1,4 +1,4 @@
-package com.rtr.phablecontacts.view
+package com.rtr.phablecontacts.view.fragement
 
 import android.os.Bundle
 import android.view.LayoutInflater
