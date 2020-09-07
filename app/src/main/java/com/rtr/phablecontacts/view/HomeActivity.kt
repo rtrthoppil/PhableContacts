@@ -1,7 +1,6 @@
 package com.rtr.phablecontacts.view
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
@@ -49,6 +48,8 @@ class HomeActivity : BaseActivity(), OnClickFabButton{
     }
 
     override fun onCLickFabButton() {
-        Toast.makeText(this,"Clicked", Toast.LENGTH_SHORT).show()
+        supportFragmentManager.beginTransaction().add(binding.layoutHomeContent.id,
+            DetailsFragment.newInstance(), DetailsFragment::class.java.toString() )
+            .addToBackStack(DetailsFragment::class.java.toString()).commit()
     }
 }
