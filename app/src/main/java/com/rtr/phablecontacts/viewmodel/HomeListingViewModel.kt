@@ -24,9 +24,10 @@ class HomeListingViewModel(var app: Application) : BaseViewModel(app) {
 
     private val contactsRepository: ContactsRepository
     var contactList: LiveData<List<Contacts>> = MutableLiveData()
-    var isDataEmpty : ObservableBoolean = ObservableBoolean(true)
+    var isDataEmpty : ObservableBoolean = ObservableBoolean(false)
 
     init {
+        showProgressView(true)
         val contactsDao = AppDataBase.getDbInstance(appContext, viewModelScope).contactsDao()
         contactsRepository = ContactsRepository(contactsDao)
         contactList = contactsRepository.contactList

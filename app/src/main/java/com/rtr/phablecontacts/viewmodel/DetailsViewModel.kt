@@ -93,6 +93,7 @@ class DetailsViewModel(var app: Application) : BaseViewModel(app) {
 
     fun onCLickButtonSubmit(view: View) {
         if(validateValues()){
+            showProgressView(true)
             if(isNewRecord.get())
                 addContact()
             else

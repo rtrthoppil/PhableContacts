@@ -81,6 +81,7 @@ class DetailsFragment  : BaseFragment() {
                     Toast.makeText(context, getString(R.string.add_success),Toast.LENGTH_SHORT).show()
                 else
                     Toast.makeText(context, getString(R.string.update_success),Toast.LENGTH_SHORT).show()
+                viewModel.showProgressView(false)
                 binding.editTextEmail.clearFocus()
                 binding.editTextName.clearFocus()
                 activity?.supportFragmentManager?.popBackStackImmediate()

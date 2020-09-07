@@ -19,7 +19,6 @@
             android:id="@+id/recyclerViewContacts"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_0_dp"
-            android:layout_marginTop="@dimen/dimen_10_dp"
             android:background="@color/offBlue"
             android:clipToPadding="false"
             android:paddingBottom="@dimen/dimen_100_dp"

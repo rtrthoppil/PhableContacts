@@ -93,7 +93,9 @@ class HomeListingFragment : BaseFragment(), OnClickContactItem {
                 negativeButton = getString(R.string.update), dialogClickListener = object :
                     DialogClickListener {
                     override fun onClickPositiveButton() {
+                        viewModel.showProgressView(true)
                         viewModel.deleteContact(item)
+                        viewModel.showProgressView(false)
                     }
                     override fun onClickNegativeButton() {
                         callbackOnClickListenerForContacts.onClickUpdateItem(item)
@@ -109,6 +111,7 @@ class HomeListingFragment : BaseFragment(), OnClickContactItem {
         viewModel.contactList.observe(this, Observer {
             if(it.isNotEmpty()) updateAdapterForContactList(it as MutableList<Contacts>)
             else viewModel.isDataEmpty.set(true)
+            viewModel.showProgressView(false)
         })
     }
 
