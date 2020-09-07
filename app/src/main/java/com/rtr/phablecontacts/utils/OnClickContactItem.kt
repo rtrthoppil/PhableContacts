@@ -1,7 +1,7 @@
 package com.rtr.phablecontacts.utils
 
 import android.view.View
-import com.rtr.phablecontacts.model.ContactItem
+import com.rtr.phablecontacts.db.Contacts
 
 /**
  * Created by RAHUL T R
@@ -13,6 +13,6 @@ import com.rtr.phablecontacts.model.ContactItem
  */
 interface OnClickContactItem {
 
-    fun onClickContactItem(view : View, item : ContactItem)
+    fun onClickContactItem(view : View, item : Contacts)
 
 }

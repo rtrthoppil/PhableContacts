@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rtr.phablecontacts.R
 import com.rtr.phablecontacts.base.BaseFragment
 import com.rtr.phablecontacts.databinding.FragmentHomeListingBinding
-import com.rtr.phablecontacts.model.ContactItem
+import com.rtr.phablecontacts.db.Contacts
 import com.rtr.phablecontacts.utils.CommonDialogUtils
 import com.rtr.phablecontacts.utils.DialogClickListener
 import com.rtr.phablecontacts.utils.OnClickContactItem
@@ -41,6 +42,7 @@ class HomeListingFragment : BaseFragment(), OnClickContactItem {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(HomeListingViewModel::class.java)
+        addObservers()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -77,14 +79,14 @@ class HomeListingFragment : BaseFragment(), OnClickContactItem {
         this.callbackOnClickFabButton = callbackOnClickFabButton
     }
 
-    override fun onClickContactItem(view: View, item : ContactItem) {
+    override fun onClickContactItem(view: View, item : Contacts) {
         showConfirmMessage(item)
     }
 
     /**
      * Method to show the pop-up for delete and edit option
      */
-    private fun showConfirmMessage(item : ContactItem){
+    private fun showConfirmMessage(item : Contacts){
         context?.let { context ->
             CommonDialogUtils.showCommonAlertDialog(context, message = getString(R.string.are_you_sure),
                 title = getString(R.string.confirm_pop_up), positiveButton = getString(R.string.remove),
@@ -101,9 +103,19 @@ class HomeListingFragment : BaseFragment(), OnClickContactItem {
     }
 
     /**
+     * Method to add observers
+     */
+    private fun addObservers(){
+        viewModel.contactList.observe(this, Observer {
+            if(it.isNotEmpty()) updateAdapterForContactList(it as MutableList<Contacts>)
+            else viewModel.isDataEmpty.set(true)
+        })
+    }
+
+    /**
      * Method to initialize the contact list recyclerview adapter
      */
-    private fun initializeAdapterForContactList(contactList : MutableList<ContactItem>){
+    private fun initializeAdapterForContactList(contactList : MutableList<Contacts>){
         binding.recyclerViewContacts.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this.context)
@@ -114,7 +126,7 @@ class HomeListingFragment : BaseFragment(), OnClickContactItem {
     /**
      * Method to update the contact list of recyclerview adapter
      */
-    private fun updateAdapterForContactList(contactList : MutableList<ContactItem>?){
+    private fun updateAdapterForContactList(contactList : MutableList<Contacts>?){
         if(contactList != null && contactList?.size > 0){
             viewModel.isDataEmpty.set(false)
             val adapter = binding.recyclerViewContacts.adapter

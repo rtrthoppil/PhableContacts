@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rtr.phablecontacts.databinding.LayoutContactBinding
-import com.rtr.phablecontacts.model.ContactItem
+import com.rtr.phablecontacts.db.Contacts
 import com.rtr.phablecontacts.utils.OnClickContactItem
 
 /**
@@ -15,7 +15,7 @@ import com.rtr.phablecontacts.utils.OnClickContactItem
 /**
  * Recycler view adapter class for listing contacts
  */
-class ContactsRecyclerViewAdapter(var contactList : MutableList<ContactItem>, var listener : OnClickContactItem) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ContactsRecyclerViewAdapter(var contactList : MutableList<Contacts>, var listener : OnClickContactItem) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ContactViewHolder(LayoutContactBinding.inflate(LayoutInflater.from(parent.context), parent, false), listener)
@@ -38,7 +38,7 @@ class ContactsRecyclerViewAdapter(var contactList : MutableList<ContactItem>, va
     /**
      * Method to update the contact list
      */
-    fun updateContactList(contactList : MutableList<ContactItem>){
+    fun updateContactList(contactList : MutableList<Contacts>){
         this.contactList = contactList
         notifyDataSetChanged()
     }
@@ -48,7 +48,7 @@ class ContactsRecyclerViewAdapter(var contactList : MutableList<ContactItem>, va
      */
     inner class ContactViewHolder(var binding: LayoutContactBinding,  var listener : OnClickContactItem) :
         RecyclerView.ViewHolder(binding.root) {
-        fun setModel(item: ContactItem) {
+        fun setModel(item: Contacts) {
             item.listener = listener
             binding.model = item
         }
